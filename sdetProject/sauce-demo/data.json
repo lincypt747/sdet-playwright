@@ -1,0 +1,18 @@
+{
+    "url": "https://www.saucedemo.com/",
+    "userName": "standard_user",
+    "password": "secret_sauce",
+    "productId": "4",
+    "productLink": "sauce-labs-backpack",
+    "productName": "Sauce Labs Backpack",
+    "productPrice": "$29.99",
+    "productDescription": "carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.",
+    "firstName": "Test",
+    "lastName": "User",
+    "zipCode": "32258",
+    "paymentInfo": "SauceCard #31337",
+    "totalAmount": " $32.39",
+    "problemUserName": "problem_user",
+    "passwordErrorMessage": "Epic sadface: Password is required",
+    "userNameErrorMessage": "Epic sadface: Username is required"
+}
