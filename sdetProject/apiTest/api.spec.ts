@@ -3,17 +3,21 @@ import { test, expect } from '@playwright/test';
 test.describe.parallel("API test", () => {
     const baseurl = 'https://jsonplaceholder.typicode.com';
     test("Simple API request", async({ request }) => {
-        const response = request.get(`${baseurl}/todos/2`,{ignoreHTTPSErrors: true});
-        expect((await response).status()).toBe(200);
+        const response = await request.get(`${baseurl}/todos/2`,{
+            ignoreHTTPSErrors: true
+        });
+        expect((response).status()).toBe(200);
         const responsebody = JSON.parse(await (await response).text());
         console.log(responsebody);
     })
 
     test("Get request - get todo details", async ({ request }) => {
-        const response = request.get(`${baseurl}/todos/1`, {ignoreHTTPSErrors: true}); 
+        const response = await request.get(`${baseurl}/todos/1`, {
+            ignoreHTTPSErrors: true
+        }); 
         const responsebody = JSON.parse(await (await response).text());
-        expect((await response).status()).toBe(200);
-        expect(await responsebody.id).toBe(1);
+        expect((response).status()).toBe(200);
+        expect(responsebody.id).toBe(1);
         expect(responsebody.title).toContain('delectus aut autem');
         expect(responsebody.completed).toBeFalsy();
     })
@@ -44,12 +48,14 @@ test.describe.parallel("API test", () => {
         const responsebody = JSON.parse(await response.text());
         expect(response.status()).toBe(200);
         expect(responsebody.title).toBe('test update data');
-        expect (responsebody.completed).toBeTruthy();
+        expect(responsebody.completed).toBeTruthy();
         console.log(responsebody)
     })
 
     test("Delete rquest - Delete Todo ", async({ request }) => {
-        const response = await request.delete(`${baseurl}/todos/201`, {ignoreHTTPSErrors: true});
+        const response = await request.delete(`${baseurl}/todos/201`, {
+            ignoreHTTPSErrors: true
+        });
         expect(response.status()).toBe(200);
 
     })
