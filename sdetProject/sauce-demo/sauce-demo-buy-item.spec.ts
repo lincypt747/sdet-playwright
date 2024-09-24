@@ -11,45 +11,39 @@ import { CheckoutCompletePage } from "../page-objects/sauce-demo/checkoutComplet
 
 
 test.describe.parallel ('Test Swaglabs website', () => {
-    let loginPage;
-    let productsPage;
-    let cartPage;
-    let checkoutPage;
-    let checkoutOverviewPage;
-    let checkoutCompletePage
     test('product checkout e2e',  async ({ page }) => {
        
        //Login with standard user
-        loginPage = new LoginPage(page);
+        const loginPage = new LoginPage(page);
         await loginPage.goto(data.url);
         await loginPage.login(data.userName, data.password);
     
         //Products Page - Verify products page and add item to cart
-        productsPage = new ProductsPage(page);
+        const productsPage = new ProductsPage(page);
         await productsPage.waitForProductsToLoad();
         await productsPage.verifyProductDetails(data.productName, data.productDescription, data.productPrice);
         await productsPage.addProductToCart(data.productLink);
         await productsPage.gotoShoppingCart();
        
         //Cart Page - verify cart and checkout
-        cartPage = new CartPage(page);
+        const cartPage = new CartPage(page);
         await cartPage.waitForCartPageToLoad();
         await cartPage.verifyCart(data.productName, data.productDescription);
         await cartPage.checkout();
 
         //Checkout Page - verify checkout page and add user details
-        checkoutPage = new CheckoutPage(page);
+        const checkoutPage = new CheckoutPage(page);
         await checkoutPage.waitForCheckoutPageToLoad();
         await checkoutPage.fillDetails(data.firstName, data.lastName, data.zipCode);
 
         //Checkout Overview Page - verify checkout overview page
-        checkoutOverviewPage = new CheckoutOverviewPage(page);
+        const checkoutOverviewPage = new CheckoutOverviewPage(page);
         await checkoutOverviewPage.waitForCheckoutPageToLoad();
         await checkoutOverviewPage.verifyDetails(data.productName, data.productPrice, data.paymentInfo, data. totalAmount);
         await checkoutOverviewPage.finishOrder();
 
         //Checkout Complete Page - verify checkout complete page
-        checkoutCompletePage = new CheckoutCompletePage(page);
+        const checkoutCompletePage = new CheckoutCompletePage(page);
         await checkoutCompletePage.waitForCheckoutPageToLoad();
         await checkoutCompletePage.verifyDetails();
         await checkoutCompletePage.backToHome();

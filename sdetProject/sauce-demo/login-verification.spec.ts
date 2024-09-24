@@ -6,12 +6,10 @@ import { ProductsPage } from "../page-objects/sauce-demo/Products";
 
 
 test.describe.parallel ('Test Swaglabs website', () => {
-    let loginPage;
-    let productsPage;
     test('login verification',  async ({ page }) => {
        
-        loginPage = new LoginPage(page);
-        productsPage = new ProductsPage(page);
+        const loginPage = new LoginPage(page);
+        const productsPage = new ProductsPage(page);
         
         //Login - negative test case Password is required
         await loginPage.goto(data.url);

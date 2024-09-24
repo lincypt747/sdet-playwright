@@ -9,25 +9,22 @@ import { CartPage } from "../page-objects/sauce-demo/Cart";
 
 
 test.describe.parallel ('Test Swaglabs website', () => {
-    let loginPage;
-    let productsPage;
-    let cartPage;
     test('product checkout e2e',  async ({ page }) => {
        
        //Login with standard user
-        loginPage = new LoginPage(page);
+        const loginPage = new LoginPage(page);
         await loginPage.goto(data.url);
         await loginPage.login(data.userName, data.password);
     
         //Products Page - verify products page and add one item to cart
-        productsPage = new ProductsPage(page);
+        const productsPage = new ProductsPage(page);
         await productsPage.waitForProductsToLoad();
         await productsPage.verifyProductDetails(data.productName, data.productDescription, data.productPrice);
         await productsPage.addProductToCart(data.productLink);
         await productsPage.gotoShoppingCart();
     
         //Cart Page - verify cart is showing added item and continue shopping
-        cartPage = new CartPage(page);
+        const cartPage = new CartPage(page);
         await cartPage.waitForCartPageToLoad();
         await cartPage.verifyCart(data.productName, data.productDescription);
         await cartPage.continueShopping();
