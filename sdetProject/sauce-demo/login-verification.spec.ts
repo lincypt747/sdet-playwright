@@ -5,12 +5,12 @@ import { LoginPage } from '../page-objects/sauce-demo/Login';
 import { ProductsPage } from "../page-objects/sauce-demo/Products";
 
 
-test.describe.parallel ('Test Swaglabs website', () => {
-    test('login verification',  async ({ page }) => {
-       
+test.describe.parallel('Test Swaglabs website', () => {
+    test('login verification', async ({ page }) => {
+
         const loginPage = new LoginPage(page);
         const productsPage = new ProductsPage(page);
-        
+
         //Login - negative test case Password is required
         await loginPage.goto(data.url);
         await loginPage.login(data.problemUserName, "");
@@ -26,5 +26,4 @@ test.describe.parallel ('Test Swaglabs website', () => {
         await loginPage.login(data.problemUserName, data.password);
         await productsPage.waitForProductsToLoad();
     })
-
 })
