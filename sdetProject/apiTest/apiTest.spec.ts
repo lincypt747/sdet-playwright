@@ -65,6 +65,10 @@ test.describe('API Testing with JSONPlaceholder', () => {
         title: "new value"
       }
     })
+    expect(getUpdatedResponse.status()).toBe(200);
+    const data = await getUpdatedResponse.json();
+    expect(data.title).toBe('new value');
+    console.log(data);
   });
 
   // 4. Collect Data and Create Artifact
